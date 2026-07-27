@@ -220,84 +220,84 @@
                             [
                                 {
                                     "a": "{{2.title}}",
-                                    "o": "text:contains:icase",
+                                    "o": "text:contain",
                                     "b": "AI"
                                 }
                             ],
                             [
                                 {
                                     "a": "{{2.title}}",
-                                    "o": "text:contains:icase",
+                                    "o": "text:contain",
                                     "b": "인공지능"
                                 }
                             ],
                             [
                                 {
                                     "a": "{{2.title}}",
-                                    "o": "text:contains:icase",
+                                    "o": "text:contain",
                                     "b": "LLM"
                                 }
                             ],
                             [
                                 {
                                     "a": "{{2.title}}",
-                                    "o": "text:contains:icase",
+                                    "o": "text:contain",
                                     "b": "GPT"
                                 }
                             ],
                             [
                                 {
                                     "a": "{{2.title}}",
-                                    "o": "text:contains:icase",
+                                    "o": "text:contain",
                                     "b": "Machine Learning"
                                 }
                             ],
                             [
                                 {
                                     "a": "{{2.title}}",
-                                    "o": "text:contains:icase",
+                                    "o": "text:contain",
                                     "b": "딥러닝"
                                 }
                             ],
                             [
                                 {
                                     "a": "{{2.description}}",
-                                    "o": "text:contains:icase",
+                                    "o": "text:contain",
                                     "b": "AI"
                                 }
                             ],
                             [
                                 {
                                     "a": "{{2.description}}",
-                                    "o": "text:contains:icase",
+                                    "o": "text:contain",
                                     "b": "인공지능"
                                 }
                             ],
                             [
                                 {
                                     "a": "{{2.description}}",
-                                    "o": "text:contains:icase",
+                                    "o": "text:contain",
                                     "b": "LLM"
                                 }
                             ],
                             [
                                 {
                                     "a": "{{2.description}}",
-                                    "o": "text:contains:icase",
+                                    "o": "text:contain",
                                     "b": "GPT"
                                 }
                             ],
                             [
                                 {
                                     "a": "{{2.description}}",
-                                    "o": "text:contains:icase",
+                                    "o": "text:contain",
                                     "b": "Machine Learning"
                                 }
                             ],
                             [
                                 {
                                     "a": "{{2.description}}",
-                                    "o": "text:contains:icase",
+                                    "o": "text:contain",
                                     "b": "딥러닝"
                                 }
                             ]
@@ -312,56 +312,56 @@
                             [
                                 {
                                     "a": "{{2.title}}",
-                                    "o": "text:contains:icase",
+                                    "o": "text:contain",
                                     "b": "Dev"
                                 }
                             ],
                             [
                                 {
                                     "a": "{{2.title}}",
-                                    "o": "text:contains:icase",
+                                    "o": "text:contain",
                                     "b": "Cloud"
                                 }
                             ],
                             [
                                 {
                                     "a": "{{2.title}}",
-                                    "o": "text:contains:icase",
+                                    "o": "text:contain",
                                     "b": "클라우드"
                                 }
                             ],
                             [
                                 {
                                     "a": "{{2.title}}",
-                                    "o": "text:contains:icase",
+                                    "o": "text:contain",
                                     "b": "개발"
                                 }
                             ],
                             [
                                 {
                                     "a": "{{2.description}}",
-                                    "o": "text:contains:icase",
+                                    "o": "text:contain",
                                     "b": "Dev"
                                 }
                             ],
                             [
                                 {
                                     "a": "{{2.description}}",
-                                    "o": "text:contains:icase",
+                                    "o": "text:contain",
                                     "b": "Cloud"
                                 }
                             ],
                             [
                                 {
                                     "a": "{{2.description}}",
-                                    "o": "text:contains:icase",
+                                    "o": "text:contain",
                                     "b": "클라우드"
                                 }
                             ],
                             [
                                 {
                                     "a": "{{2.description}}",
-                                    "o": "text:contains:icase",
+                                    "o": "text:contain",
                                     "b": "개발"
                                 }
                             ]
