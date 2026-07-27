@@ -1,4 +1,4 @@
-# 🚀 [seung] Make.com RSS 뉴스 수집 시나리오 임포트 & 실행 가이드
+﻿# 🚀 [seung] Make.com RSS 뉴스 수집 시나리오 임포트 & 실행 가이드
 
 > **이 가이드는 `seung_Integration RSS, OpenAI (ChatGPT, Sora, Whisper).blueprint.json` 청사진 파일을 Make.com에 업로드하고, 실제 동작하도록 설정하는 방법을 단계별로 설명합니다.**
 

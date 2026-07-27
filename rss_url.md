@@ -1,4 +1,4 @@
-# 📰 연합뉴스 RSS 피드 목록 (Yonhap News RSS Feeds)
+﻿# 📰 연합뉴스 RSS 피드 목록 (Yonhap News RSS Feeds)
 
 > **`rss주소.png` 이미지에서 추출한 연합뉴스 분야별 RSS 피드 주소 목록입니다.**
 

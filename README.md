@@ -1,4 +1,4 @@
-# 📰 [Project B] 뉴스 요약 자동화 워크플로우 (Automated Tech News Summarization Pipeline)
+﻿# 📰 [Project B] 뉴스 요약 자동화 워크플로우 (Automated Tech News Summarization Pipeline)
 
 > **RSS 피드 수집부터 Generative AI(OpenAI) 기반 3줄 요약, 노션(Notion) DB 자동 저장까지 연결하는 노코드 무인 업무 자동화 파이프라인 프로젝트**
 
