@@ -1,0 +1,401 @@
+{
+    "name": "[3HAN] RSS 데이터 수집 및 주제 필터링 워크플로우 (썸네일)",
+    "flow": [
+        {
+            "id": 1,
+            "module": "rss:TriggerNewArticle",
+            "version": 4,
+            "parameters": {
+                "url": "https://www.yna.co.kr/rss/news.xml",
+                "gzip": true,
+                "include": [],
+                "password": "",
+                "username": "",
+                "maxResults": 1
+            },
+            "mapper": {},
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 150,
+                    "name": "[seung] RSS 피드 최신 뉴스 자동 수집 & 1차 중복방지 (매일 09:00 KST)"
+                },
+                "restore": {},
+                "parameters": [
+                    {
+                        "name": "url",
+                        "type": "url",
+                        "label": "URL",
+                        "required": true
+                    },
+                    {
+                        "name": "maxResults",
+                        "type": "number",
+                        "label": "Maximum number of returned items",
+                        "required": true
+                    },
+                    {
+                        "name": "username",
+                        "type": "text",
+                        "label": "User name"
+                    },
+                    {
+                        "name": "password",
+                        "type": "text",
+                        "label": "Password"
+                    },
+                    {
+                        "name": "include",
+                        "type": "select",
+                        "label": "Process RSS fields",
+                        "multiple": true,
+                        "validate": {
+                            "enum": [
+                                "google-merchant-center",
+                                "itunes"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "gzip",
+                        "type": "boolean",
+                        "label": "Request compressed content",
+                        "required": true
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "title",
+                        "type": "text",
+                        "label": "Title"
+                    },
+                    {
+                        "name": "description",
+                        "type": "text",
+                        "label": "Description"
+                    },
+                    {
+                        "name": "summary",
+                        "type": "text",
+                        "label": "Summary"
+                    },
+                    {
+                        "name": "author",
+                        "type": "text",
+                        "label": "Author"
+                    },
+                    {
+                        "name": "url",
+                        "type": "url",
+                        "label": "URL"
+                    },
+                    {
+                        "name": "dateUpdated",
+                        "type": "date",
+                        "label": "Date updated"
+                    },
+                    {
+                        "name": "dateCreated",
+                        "type": "date",
+                        "label": "Date created"
+                    },
+                    {
+                        "name": "comments",
+                        "type": "url",
+                        "label": "Comments"
+                    },
+                    {
+                        "name": "image",
+                        "spec": [
+                            {
+                                "name": "title",
+                                "type": "text",
+                                "label": "Name"
+                            },
+                            {
+                                "name": "url",
+                                "type": "url",
+                                "label": "URL"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Image"
+                    },
+                    {
+                        "name": "categories",
+                        "spec": {
+                            "type": "text"
+                        },
+                        "type": "array",
+                        "label": "Categories"
+                    },
+                    {
+                        "name": "source",
+                        "spec": [
+                            {
+                                "name": "title",
+                                "type": "text",
+                                "label": "Name"
+                            },
+                            {
+                                "name": "url",
+                                "type": "url",
+                                "label": "URL"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Source"
+                    },
+                    {
+                        "name": "enclosures",
+                        "spec": [
+                            {
+                                "name": "url",
+                                "type": "url",
+                                "label": "URL"
+                            },
+                            {
+                                "name": "type",
+                                "type": "text",
+                                "label": "Type"
+                            },
+                            {
+                                "name": "length",
+                                "type": "number",
+                                "label": "Length"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Enclosures"
+                    },
+                    {
+                        "help": "Other RSS fields. All values are in text format.",
+                        "name": "rssFields",
+                        "spec": [
+                            {
+                                "name": "title",
+                                "type": "text",
+                                "label": "title"
+                            },
+                            {
+                                "name": "link",
+                                "type": "text",
+                                "label": "link"
+                            },
+                            {
+                                "name": "description",
+                                "type": "text",
+                                "label": "description"
+                            },
+                            {
+                                "name": "guid",
+                                "type": "text",
+                                "label": "guid"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "RSS fields"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 2,
+            "module": "builtin:BasicRouter",
+            "version": 1,
+            "mapper": null,
+            "metadata": {
+                "designer": {
+                    "x": 531,
+                    "y": 155,
+                    "name": "[seung] 주제(AI / Dev) 라우터 & 조건 필터링"
+                }
+            },
+            "routes": [
+                {
+                    "flow": [
+                        {
+                            "id": 3,
+                            "module": "openai-gpt-3:CreateCompletion",
+                            "version": 1,
+                            "parameters": {
+                                "__IMTCONN__": 9382335
+                            },
+                            "filter": {
+                                "name": "[seung 필터] AI 주제 뉴스 선별 (직접 키워드 매칭)",
+                                "conditions": [
+                                    [
+                                        {
+                                            "a": "{{1.rssFields.title}}",
+                                            "b": "AI",
+                                            "o": "text:contain"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "a": "{{1.rssFields.title}}",
+                                            "b": "인공지능",
+                                            "o": "text:contain"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "a": "{{1.rssFields.title}}",
+                                            "b": "LLM",
+                                            "o": "text:contain"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "a": "{{1.rssFields.title}}",
+                                            "b": "GPT",
+                                            "o": "text:contain"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "a": "{{1.rssFields.title}}",
+                                            "b": "Machine Learning",
+                                            "o": "text:contain"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "a": "{{1.rssFields.title}}",
+                                            "b": "딥러닝",
+                                            "o": "text:contain"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "a": "{{1.rssFields.description}}",
+                                            "b": "AI",
+                                            "o": "text:contain"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "a": "{{1.rssFields.description}}",
+                                            "b": "인공지능",
+                                            "o": "text:contain"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "a": "{{1.rssFields.description}}",
+                                            "b": "LLM",
+                                            "o": "text:contain"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "a": "{{1.rssFields.description}}",
+                                            "b": "GPT",
+                                            "o": "text:contain"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "a": "{{1.rssFields.description}}",
+                                            "b": "Machine Learning",
+                                            "o": "text:contain"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "a": "{{1.rssFields.description}}",
+                                            "b": "딥러닝",
+                                            "o": "text:contain"
+                                        }
+                                    ]
+                                ]
+                            },
+                            "mapper": {
+                                "model": "gpt-4o-mini",
+                                "top_p": "1",
+                                "select": "chat",
+                                "messages": [
+                                    {
+                                        "role": "system",
+                                        "content": "당신은 기술 뉴스 요약 전문가입니다.\r\n주어진 기사를 정확히 3줄로 요약하고,\r\n반드시 아래 JSON 형식으로만 응답하세요.\r\n추가 설명이나 마크다운 없이 순수 JSON만 출력하세요.\r\n\r\n응답 형식:\r\n{\r\n  \"summary\": [\"1줄 요약\", \"2줄 요약\", \"3줄 요약\"],\r\n  \"sentiment\": \"positive | neutral | negative\",\r\n  \"tags\": [\"태그1\", \"태그2\"]\r\n}"
+                                    },
+                                    {
+                                        "role": "user",
+                                        "content": "아래 기사를 요약해주세요.\r\n- 각 줄은 60자 이내\r\n- 핵심 사실 위주, 추측 금지\r\n\r\n[기사 제목]\r\n{{1.rssFields.title}}\n\r\n[기사 본문]\r\n{{substring(1.rssFields.description; 1; 3000)}}"
+                                    }
+                                ],
+                                "max_tokens": "2048",
+                                "temperature": "1",
+                                "n_completions": "1",
+                                "response_format": "json_object"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 488,
+                                    "y": 493
+                                }
+                            }
+                        },
+                        {
+                            "id": 4,
+                            "module": "json:ParseJSON",
+                            "version": 1,
+                            "parameters": {
+                                "type": null
+                            },
+                            "mapper": {
+                                "json": "{{3.choices[1].message.content}}"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 924,
+                                    "y": 438
+                                }
+                            }
+                        },
+                        {
+                            "id": 8,
+                            "module": "openai-gpt-3:GenerateImage",
+                            "version": 1,
+                            "parameters": {
+                                "__IMTCONN__": 9382335
+                            },
+                            "mapper": {
+                                "n": "1",
+                                "model": "dall-e-3",
+                                "prompt": "Create a modern, sleek technology news thumbnail vector illustration inspired by the news title: {{1.rssFields.title}}"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 1224,
+                                    "y": 438
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "instant": false,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "eu1.make.com",
+        "notes": []
+    }
+}
